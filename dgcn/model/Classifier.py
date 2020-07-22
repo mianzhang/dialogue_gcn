@@ -22,9 +22,9 @@ class Classifier(nn.Module):
             self.nll_loss = nn.NLLLoss()
 
     def get_prob(self, h, text_len_tensor):
-        h_hat = self.emotion_att(h, text_len_tensor)
-        hidden = self.drop(F.relu(self.lin1(h_hat)))
-        # hidden = self.drop(F.relu(self.lin1(h)))
+        # h_hat = self.emotion_att(h, text_len_tensor)
+        # hidden = self.drop(F.relu(self.lin1(h_hat)))
+        hidden = self.drop(F.relu(self.lin1(h)))
         scores = self.lin2(hidden)
         log_prob = F.log_softmax(scores, dim=-1)
 
