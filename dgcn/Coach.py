@@ -65,7 +65,7 @@ class Coach:
         epoch_loss = 0
         self.model.train()
         # for idx in tqdm(np.random.permutation(len(self.trainset)), desc="train epoch {}".format(epoch)):
-        self.trainset.shuffle()
+        # self.trainset.shuffle()
         for idx in tqdm(range(len(self.trainset)), desc="train epoch {}".format(epoch)):
             self.model.zero_grad()
             data = self.trainset[idx]

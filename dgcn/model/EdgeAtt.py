@@ -21,26 +21,24 @@ class EdgeAtt(nn.Module):
 
     def forward(self, node_features, text_len_tensor, edge_ind):
         batch_size, mx_len = node_features.size(0), node_features.size(1)
-        alphas = []
-
-        weight = self.weight.unsqueeze(0).unsqueeze(0)
-        att_matrix = torch.matmul(weight, node_features.unsqueeze(-1)).squeeze(-1)  # [B, L, D_g]
-        for i in range(batch_size):
-            cur_len = text_len_tensor[i].item()
-            alpha = torch.zeros((mx_len, 110)).to(self.device)
-            for j in range(cur_len):
-                s = j - self.wp if j - self.wp >= 0 else 0
-                e = j + self.wf if j + self.wf <= cur_len - 1 else cur_len - 1
-                tmp = att_matrix[i, s: e + 1, :]  # [L', D_g]
-                feat = node_features[i, j]  # [D_g]
-                score = torch.matmul(tmp, feat)
-                probs = F.softmax(score)  # [L']
-                #
-                # probs = 1 - F.softmax(score)
-                # probs = score
-                alpha[j, s: e + 1] = probs
-            alphas.append(alpha)
-        # alphas = torch.rand(batch_size, mx_len, 110).to(self.device)
+#        alphas = []
+#
+#        weight = self.weight.unsqueeze(0).unsqueeze(0)
+#        att_matrix = torch.matmul(weight, node_features.unsqueeze(-1)).squeeze(-1)  # [B, L, D_g]
+#        for i in range(batch_size):
+#            cur_len = text_len_tensor[i].item()
+#            alpha = torch.zeros((mx_len, 110)).to(self.device)
+#            for j in range(cur_len):
+#                s = j - self.wp if j - self.wp >= 0 else 0
+#                e = j + self.wf if j + self.wf <= cur_len - 1 else cur_len - 1
+#                tmp = att_matrix[i, s: e + 1, :]  # [L', D_g]
+#                feat = node_features[i, j]  # [D_g]
+#                score = torch.matmul(tmp, feat)
+#                probs = F.softmax(score)  # [L']
+#                alpha[j, s: e + 1] = probs
+#            alphas.append(alpha)
+        torch.manual_seed(100)
+        alphas = torch.rand(batch_size, mx_len, 110).to(self.device)
 
         return alphas
 
