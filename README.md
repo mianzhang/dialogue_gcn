@@ -19,4 +19,4 @@ You can run the whole process very easily. Take the IEMOCAP corpus for example:
 -|Dataset|Weighted F1
 :-:|:-:|:-:
 Original|IEMOCAP|64.18%
-This Implementation|IEMOCAP|64.13%
+This Implementation|IEMOCAP|64.10%
