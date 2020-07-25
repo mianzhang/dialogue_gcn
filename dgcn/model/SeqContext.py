@@ -9,7 +9,6 @@ class SeqContext(nn.Module):
         super(SeqContext, self).__init__()
         self.input_size = u_dim
         self.hidden_dim = g_dim
-        # torch.manual_seed(24)
         if args.rnn == "lstm":
             self.rnn = nn.LSTM(self.input_size, self.hidden_dim // 2, dropout=args.drop_rate,
                                bidirectional=True, num_layers=2, batch_first=True)
