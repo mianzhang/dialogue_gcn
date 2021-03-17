@@ -1,9 +1,9 @@
 # dialogue_gcn
 Pytorch implementation to paper "DialogueGCN: A Graph Convolutional Neural Network for Emotion Recognition in Conversation". 
 
-# Requirements
-torch==1.6.0
-pytorch_geometric=1.6.3
+## Requirements
+- torch 1.6.0
+- pytorch_geometric 1.6.3
 
 ## Running
 You can run the whole process very easily. Take the IEMOCAP corpus for example:
